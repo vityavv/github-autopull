@@ -1,8 +1,7 @@
 let http = require("http");
+let {spawn} = require("child_process");
 
 http.createServer((req, res) => {
-	let body = "";
-	req.on("data", data => body += data);
-	req.on("end", () => console.log(body));
 	res.end();
-}).listen(9000);
+	spawn("git", ["pull", "origin", "master"]);
+}).listen(80);
